@@ -1,7 +1,13 @@
-import { FormEvent, useState } from "react";
-import { api, User } from "../lib/api";
+import { type FormEvent, useState } from "react";
+import { api, type User } from "../lib/api";
 
-export default function Login({ onLogin }: { onLogin: (user: User) => void }) {
+export default function Login({
+  onLogin,
+  onSwitchToSignup,
+}: {
+  onLogin: (user: User) => void;
+  onSwitchToSignup?: () => void;
+}) {
   const [email, setEmail] = useState("admin@example.com");
   const [password, setPassword] = useState("password123");
   const [error, setError] = useState("");
@@ -26,7 +32,7 @@ export default function Login({ onLogin }: { onLogin: (user: User) => void }) {
     <div className="login-page">
       <div className="login-panel">
         <div className="login-heading">
-          <span className="eyebrow">EVENT REGISTRY / AUTH</span>
+          <span className="eyebrow">SHOWTIME / AUTH</span>
           <h1>Sign in</h1>
           <p>Access events, bookings and payment records.</p>
         </div>
@@ -49,6 +55,25 @@ export default function Login({ onLogin }: { onLogin: (user: User) => void }) {
         </form>
 
         <div className="login-demo">
+          {onSwitchToSignup && (
+            <div style={{ marginBottom: "0.75rem" }}>
+              Don't have an account?{" "}
+              <button
+                type="button"
+                onClick={onSwitchToSignup}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#60a5fa",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  fontWeight: 600,
+                }}
+              >
+                Create Account
+              </button>
+            </div>
+          )}
           DEMO ACCESS<br />
           <code>admin@example.com</code><br />
           <code>password123</code>

@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers import auth, bookings, events, payments
 
 app = FastAPI(
-    title="Event Management API",
+    title="Showtime API",
     version="1.0.0",
-    description="College event management backend using FastAPI, SQLAlchemy and Oracle.",
+    description="Showtime event booking & management backend using FastAPI, SQLAlchemy and Oracle.",
 )
 
 app.add_middleware(
@@ -25,7 +25,7 @@ app.include_router(payments.router)
 
 @app.get("/")
 def root():
-    return {"message": "Event Management API is running"}
+    return {"message": "Showtime API is running"}
 
 
 @app.get("/health")

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate, NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import { CalendarDays, CreditCard, LogOut, Menu, Ticket, X } from "lucide-react";
-import { api, User } from "./lib/api";
+import { api, type User } from "./lib/api";
+import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Events from "./pages/Events";
 import Bookings from "./pages/Bookings";
@@ -25,7 +26,14 @@ export default function App() {
   if (!user) {
     return (
       <Routes>
-        <Route path="*" element={<Login onLogin={setUser} />} />
+        <Route
+          path="/signup"
+          element={<Signup onLogin={setUser} onSwitchToLogin={() => navigate("/login")} />}
+        />
+        <Route
+          path="*"
+          element={<Login onLogin={setUser} onSwitchToSignup={() => navigate("/signup")} />}
+        />
       </Routes>
     );
   }
@@ -39,8 +47,8 @@ export default function App() {
     <div className="shell">
       <header className="topbar">
         <div className="brand">
-          <span className="brand-mark">ER</span>
-          <span>EVENT REGISTRY</span>
+          <span className="brand-mark">ST</span>
+          <span>SHOWTIME</span>
         </div>
         <button className="mobile-menu" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -75,8 +83,8 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        <span>EVENT REGISTRY / COLLEGE DEMO</span>
-        <span>FASTAPI · SQLALCHEMY · ORACLE</span>
+        <span>SHOWTIME / EVENT REGISTRY</span>
+        <span>FASTAPI · SQLALCHEMY · ORACLE DB</span>
       </footer>
     </div>
   );

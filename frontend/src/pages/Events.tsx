@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Search, MapPin, Calendar, Users, ArrowUpRight } from "lucide-react";
-import { api, Event, User } from "../lib/api";
+import { api, type Event, type User } from "../lib/api";
 
 export default function Events({ user }: { user: User }) {
   const [events, setEvents] = useState<Event[]>([]);
@@ -38,7 +38,7 @@ export default function Events({ user }: { user: User }) {
     <>
       <div className="page-head">
         <div>
-          <div className="eyebrow">CATALOGUE / {events.length.toString().padStart(2, "0")} EVENTS</div>
+          <div className="eyebrow">SHOWTIME / {events.length.toString().padStart(2, "0")} EVENTS</div>
           <h1>Events</h1>
           <p>Browse upcoming events and reserve a place.</p>
         </div>
